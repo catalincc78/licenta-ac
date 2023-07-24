@@ -170,6 +170,10 @@ class ProdusController extends Controller
                         'message' => $validator->errors()->all(),
                     ], 422);
                 }
+
+                // cod comentat
+                // pt commit
+                
                 $dateProdus =  DB::table("produs")->where('id', $id)->update([
                     'nume_produs' => $data['nume_produs'],
                     'cantitate'  => $data['cantitate'],
