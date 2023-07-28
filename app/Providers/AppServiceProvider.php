@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Models\Player;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -21,13 +20,4 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
-        view()->composer(['dashboard.user.home', 'dashboard.admin.home','dashboard.admin.dashboard'], function ($view) {
-
-            $players = Player::all();
-
-            $view->with('players', $players);
-        });
-    }
 }

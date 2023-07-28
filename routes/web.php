@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\ProdusController;
@@ -32,12 +31,10 @@ Route::prefix('user')->name('user.')->group(function() {
         Route::view('/register','dashboard.user.register')->name('register');
         Route::post('/create',[UserController::class,'create'])->name('create');
         Route::post('/check',[UserController::class,'check'])->name('check');
-        //Route::get('/player',[PlayerController::class,'index'])->name('player');
     });
 
     Route::middleware(['auth:web','PreventBackHistory'])->group(function(){
         Route::view('/home', 'dashboard.user.home')->name('home');
-        Route::get('/home',[PlayerController::class,'index'])->name('home');
         Route::post('/logout',[UserController::class,'logout'])->name('logout');
         Route::get('/adaugare-produs', [ProdusController::class, 'viewAdaugareProdus'])->name('produse.adaugare-produs');
         Route::post('/editare-produs/{id}', [ProdusController::class, 'editareProdus'])->name('produse.editare-produs');
@@ -60,9 +57,6 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
         Route::view('/home','dashboard.admin.home')->name('home');
         Route::view('/dashboard','dashboard.admin.dashboard')->name('dashboard');
-        Route::view('/add-player','dashboard.admin.add-player')->name('add-player');
-       // Route::get('/home',[PlayerController::class,'index'])->name('home');
         Route::post('/logout',[AdminController::class,'logout'])->name('logout');
-        Route::post('/add-player',[PlayerController::class,'addPlayer'])->name('add-player');
     });
 });
