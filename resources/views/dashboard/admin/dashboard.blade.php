@@ -56,8 +56,8 @@
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="/admin/add-player">
-                                        Add Players
+                                    <a class="nav-link collapsed" href="">
+                                        Add Users
                                         <div class="sb-sidenav"></div>
                                     </a>
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
@@ -67,19 +67,9 @@
                                         Add Teams
                                         <div class="sb-sidenav"></div>
                                     </a>
-
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">Addons</div>
-                            {{--  <a class="nav-link" href="charts.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Charts
-                            </a>
-                            <a class="nav-link" href="tables.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Add Players
-                            </a>
-                            --}}
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

@@ -84,7 +84,7 @@ class ProdusController extends Controller
         //
     }
     public static function listaProduse(){
-        $viewProdus = DB::table('produs')->select('id', 'nume_produs', 'cantitate', 'valoare_produs')->get();
+        $viewProdus = DB::table('produs')->select('id', 'nume_produs', 'valoare_produs')->get();
         return view('dashboard.user.produse.lista-produse', ['produse' => $viewProdus]);
     }
     public static function viewAdaugareProdus()
@@ -95,26 +95,19 @@ class ProdusController extends Controller
     {
         try {
             if (!is_null($request->input('nume_produs'))
-                && !is_null($request->input('cantitate'))
                 && !is_null($request->input('valoare_produs'))) {
                 $data = [];
                 $data['nume_produs'] = $request->input('nume_produs');
-                $data['cantitate'] = $request->input('cantitate');
                 $data['valoare_produs'] = $request->input('valoare_produs');
                 $validator = Validator::make($request->all(),[
                     'nume_produs' => 'required|min:3|max:100',
-                    'cantitate' => 'required|integer|min:1',
                     'valoare_produs' => 'required|numeric|min:0.1'],
                     [
-
                         'nume_produs.required' => 'Numele produsului este un camp obligatoriu',
-                        'cantitate.required' => 'Cantitatea este un numar obligatoriu',
                         'valoare_produs.required' => 'Valoare produs este un numar obligatoriu',
                         'nume_produs.min' => 'Numele produsului trebuie sa contina cel putin 3 caractere',
                         'nume_produs.max' => 'Numele produsului nu poate depasi 100 de caractere',
-                        'cantitate.min' => 'Valoarea cantitatii trebuie sa aiba valoarea egala sau mai mare decat 1',
                         'valoare_produs.min' => 'Valoarea cantitatii trebuie sa aiba minim 0.1',
-                        'cantitate.integer' => 'Cantitatea trebuie sa fie o valoare numerica intreaga',
                         'valoare_produs.numeric' => 'Valoarea produsului trebuie sa fie o valoare numerica',
                 ]);
                 if ($validator->fails()) {
@@ -125,7 +118,6 @@ class ProdusController extends Controller
                 }
                 $dateProdus =  DB::table("produs")->insert([
                     'nume_produs' => $data['nume_produs'],
-                    'cantitate' => $data['cantitate'],
                     'valoare_produs' => $data['valoare_produs']
                 ]);
                 if($dateProdus) {
@@ -142,26 +134,19 @@ class ProdusController extends Controller
     {
         try {
             if (!is_null($request->input('nume_produs'))
-                && !is_null($request->input('cantitate'))
                 && !is_null($request->input('valoare_produs'))) {
                 $data = [];
                 $data['nume_produs'] = $request->input('nume_produs');
-                $data['cantitate'] = $request->input('cantitate');
                 $data['valoare_produs'] = $request->input('valoare_produs');
                 $validator = Validator::make($request->all(),[
                     'nume_produs' => 'required|min:3|max:100',
-                    'cantitate' => 'required|integer|min:1',
                     'valoare_produs' => 'required|numeric|min:0.1'],
                     [
-
                         'nume_produs.required' => 'Numele produsului este un camp obligatoriu',
-                        'cantitate.required' => 'Cantitatea este un numar obligatoriu',
                         'valoare_produs.required' => 'Valoare produs este un numar obligatoriu',
                         'nume_produs.min' => 'Numele produsului trebuie sa contina cel putin 3 caractere',
                         'nume_produs.max' => 'Numele produsului nu poate depasi 100 de caractere',
-                        'cantitate.min' => 'Valoarea cantitatii trebuie sa aiba valoarea egala sau mai mare decat 1',
                         'valoare_produs.min' => 'Valoarea cantitatii trebuie sa aiba minim 0.1',
-                        'cantitate.integer' => 'Cantitatea trebuie sa fie o valoare numerica intreaga',
                         'valoare_produs.numeric' => 'Valoarea produsului trebuie sa fie o valoare numerica',
                     ]);
                 if ($validator->fails()) {
@@ -171,12 +156,8 @@ class ProdusController extends Controller
                     ], 422);
                 }
 
-                // cod comentat
-                // pt commit
-                
                 $dateProdus =  DB::table("produs")->where('id', $id)->update([
                     'nume_produs' => $data['nume_produs'],
-                    'cantitate'  => $data['cantitate'],
                     'valoare_produs' => $data['valoare_produs']
                 ]);
                 if($dateProdus) {
@@ -192,8 +173,8 @@ class ProdusController extends Controller
     public static function stergereProdus($id)
     {
         try{
-            $deleteCoupon = DB::table('produs')->where('id', $id)->delete();
-            if($deleteCoupon) {
+            $deleteProdus = DB::table('produs')->where('id', $id)->delete();
+            if($deleteProdus) {
                 return response()->json(['success' => 1, 'message' => 'Produsul a fost sters cu succes']);
             }else{
                 return response()->json(['error' => 1, 'message' => 'Produsul nu a fost sters!']);

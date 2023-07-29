@@ -52,7 +52,6 @@
                             <thead>
                             <tr>
                                 <th>Nume produs</th>
-                                <th>Cantitate</th>
                                 <th>Valoare totala produs</th>
                                 <th>Actiuni</th>
                             </tr>
@@ -61,10 +60,9 @@
                             @foreach($produse as $produs)
                             <tr>
                                 <td>{{$produs->nume_produs}}</td>
-                                <td>{{$produs->cantitate}}</td>
-                                <td>{{$produs->cantitate * $produs->valoare_produs}} (RON)</td>
+                                <td>{{$produs->valoare_produs}} (RON)</td>
                                 <td>
-                                    <button class="btn btn-primary edit-btn" data-id="{{$produs->id}}" data-nume_produs="{{ $produs->nume_produs }}" data-cantitate="{{ $produs->cantitate }}" data-valoare_produs="{{ $produs->valoare_produs }}"  data-bs-toggle="modal" data-bs-target="#editModal">Editeaza</button>
+                                    <button class="btn btn-primary edit-btn" data-id="{{$produs->id}}" data-nume_produs="{{ $produs->nume_produs }}" data-valoare_produs="{{ $produs->valoare_produs }}"  data-bs-toggle="modal" data-bs-target="#editModal">Editeaza</button>
                                     <button class="btn btn-danger btn-delete" data-id="{{ $produs->id }}">Sterge</button>
                                 </td>
                             </tr>
@@ -86,12 +84,10 @@
         $('.edit-btn').click(function() {
             var produsId = $(this).data('id');
             var nume_produs = $(this).data('nume_produs');
-            var cantitate = $(this).data('cantitate');
             var valoare_produs = $(this).data('valoare_produs');
             $('#produsForm').attr('action', '/user/editare-produs/' + produsId);
 
             $('#editModal #nume_produs').val(nume_produs);
-            $('#editModal #cantitate').val(cantitate);
             $('#editModal #valoare_produs').val(valoare_produs);
             $('#editModal').modal('show');
         });

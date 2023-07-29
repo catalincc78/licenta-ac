@@ -17,11 +17,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="cantitate" class="form-label-bold">Cantitate:</label>
-                        <input type="number" id="cantitate" name="cantitate" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
                         <label for="valoare_produs" class="form-label-bold">Valoare produs:</label>
                         <input type="number" step="0.01" id="valoare_produs" name="valoare_produs" class="form-control" required>
                     </div>

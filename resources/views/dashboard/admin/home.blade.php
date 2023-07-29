@@ -60,8 +60,8 @@
                                         Add Teams
                                         <div class="sb-sidenav"></div>
                                     </a>
-                                    <a class="nav-link collapsed" href="/admin/add-player" >
-                                        Add Players
+                                    <a class="nav-link collapsed" href="" >
+                                        Add User
                                         <div class="sb-sidenav"></div>
                                     </a>
 
